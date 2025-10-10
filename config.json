@@ -1,0 +1,12 @@
+{
+  "tau": 0.4,
+  "lang": "en",
+  "tts_workers": 4,
+  "gpu_workers": 1,
+  "no_clean": false,
+  "backup_label_map": true,
+  "skip_extract": false,
+  "skip_clone": false,
+  "device": "cuda",
+  "extracted_outdir": "extracted_voices"
+}
