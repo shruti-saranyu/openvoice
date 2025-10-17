@@ -1,0 +1,11 @@
+Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com
+Collecting triton
+  Downloading triton-3.5.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.7 kB)
+Downloading triton-3.5.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (170.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 170.3/170.3 MB 302.5 MB/s  0:00:00
+Installing collected packages: triton
+  Attempting uninstall: triton
+    Found existing installation: triton 3.5.0
+    Uninstalling triton-3.5.0:
+      Successfully uninstalled triton-3.5.0
+Successfully installed triton-3.5.0

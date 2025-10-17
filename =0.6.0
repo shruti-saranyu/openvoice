@@ -1,0 +1,2 @@
+Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com
+Requirement already satisfied: einops in /root/miniconda3/envs/indicf5/lib/python3.10/site-packages (0.3.2)

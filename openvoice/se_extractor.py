@@ -147,43 +147,7 @@ def get_se(audio_path, vc_model, target_dir='processed', vad=True):
     
     audio_segs = glob(f'{wavs_folder}/*.wav')
     if len(audio_segs) == 0:
-                # Fallback: no audio segments were detected by VAD/segmenter.
-        # To avoid aborting the whole pipeline, return a synthetic speaker
-        # embedding so conversion can proceed for debugging / end-to-end tests.
-        # NOTE: this is a synthetic embedding and will NOT preserve speaker identity.
-        import torch
-        import warnings
-        warnings.warn('No audio segments found: falling back to synthetic SE embedding.', UserWarning)
-        # choose a reasonable default g-dim; 256 is used by many OpenVoice converters
-        gdim = 256
-        try:
-            # if a converter object 'tcc' is available in this scope, try to infer gdim
-            if 'tcc' in locals() or 'tcc' in globals():
-                t = locals().get('tcc', globals().get('tcc', None))
-                if t is not None:
-                    try:
-                        sd = getattr(t, 'model', None)
-                        # best-effort: inspect state_dict if present
-                        st = None
-                        try:
-                            st = t.model.state_dict()
-                        except Exception:
-                            st = None
-                        if st is not None:
-                            for k,v in st.items():
-                                if 'cond' in k and getattr(v, 'ndim', 0) >= 2:
-                                    gdim = int(v.shape[1])
-                                    break
-                    except Exception:
-                        pass
-        except Exception:
-            gdim = 256
-        # produce a deterministic random vector so results are reproducible in repeated runs
-        torch.manual_seed(0)
-        se = torch.randn(gdim)
-        # return shape (1, C, 1) and an empty meta dict
-        return se.unsqueeze(0).unsqueeze(-1), {'fallback_synthetic': True}
-
+        raise NotImplementedError('No audio segments found!')
     
     return vc_model.extract_se(audio_segs, se_save_path=se_path), audio_name
 
